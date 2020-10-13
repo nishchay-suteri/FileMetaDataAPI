@@ -3,6 +3,7 @@ const path = require('path')
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const fileUpload = require('express-fileupload');
 
 const fileAnalyseRouter = require('./routes/FileAnalyse')
 
@@ -10,7 +11,8 @@ const app = express();
 dotenv.config();
 
 // MIDDLEWARES
-app.use(cors({optionsSuccessStatus: 200}))
+app.use(cors({optionsSuccessStatus: 200}));
+app.use(fileUpload());
 app.use(express.static(path.join(__dirname,'../public'))); // To Serve Static contents
 app.set('views', path.join(__dirname,'views'));
 app.set('view engine', 'ejs');
